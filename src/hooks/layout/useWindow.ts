@@ -368,36 +368,9 @@ export default function useWindow(): void {
 
   // Check for active subscription and set isPro
   useEffect(() => {
-    const steamId = userSummary?.steamId
-
-    if (!steamId) return
-
-    const checkSubscription = async (): Promise<void> => {
-      try {
-        const response = await fetch('https://apibase.vercel.app/api/subscriptions', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ steamId }),
-        })
-
-        const data = await response.json()
-
-        if (data?.results?.status) {
-          setIsPro(true)
-        } else {
-          setIsPro(false)
-        }
-      } catch (error) {
-        console.error('Error checking subscription:', error)
-        logEvent(`[Error] in checkSubscription: ${error}`)
-        setIsPro(false)
-      }
-    }
-
-    checkSubscription()
-  }, [userSummary?.steamId, setIsPro])
+    // Always enable Pro features
+    setIsPro(true)
+  }, [setIsPro])
 
   useEffect(() => {
     // Show changelog after updates
