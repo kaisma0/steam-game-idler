@@ -1,10 +1,11 @@
 {
   "version": "2.5.22",
   "major": false,
+  "notes": "Release 2.5.22",
   "platforms": {
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVUSDh2NGF3cDBSMGpHYlVmRy9XM2lpM1MyRkhObXVnY09iRWVRejZBVCtlWnh4RkZJbm9yc0YwZnBLbldyWHBrSFJQZXpuUDRKUlVVR2RablNNRkZXUytQTG8yTmx5WFFZPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzY4NDYxMDM0CWZpbGU6U3RlYW0gR2FtZSBJZGxlcl8yLjUuMjJfeDY0LXNldHVwLm5zaXMuemlwCklMQ1JPdDZsVkQ4ZVFkT295OHlnTTNUdFI2QjlSSS8zSVFwakJ4cEQ5VEt2cnNhVi9NcHVEZGJaLzVJb0RvVlc1TVJMN2ZjWXMra1ZnTElxYnRvNURBPT0K",
-      "url": "https://github.com/zevnda/steam-game-idler/releases/download/2.5.22/Steam.Game.Idler_2.5.22_x64-setup.nsis.zip"
+      "signature": "PLACEHOLDER_WILL_BE_UPDATED_BY_WORKFLOW",
+      "url": "https://github.com/kaisma0/steam-game-idler/releases/download/2.5.22/Steam.Game.Idler_2.5.22_x64-setup.nsis.zip"
     }
   }
 }

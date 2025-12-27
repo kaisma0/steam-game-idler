@@ -33,7 +33,7 @@ export default function Layout({ children }: { children: ReactNode }): ReactElem
         <title>Steam Game Idler</title>
       </Head>
 
-      <Script id='chatway' src='https://cdn.chatway.app/widget.js?id=1F2cY0TT2RKh' />
+      {/* <Script id='chatway' src='https://cdn.chatway.app/widget.js?id=1F2cY0TT2RKh' />
       <Script id='chatway-hide-icon' strategy='afterInteractive'>
         {`
           window.$chatwayOnLoad = function() {
@@ -42,7 +42,7 @@ export default function Layout({ children }: { children: ReactNode }): ReactElem
             }
           };
         `}
-      </Script>
+      </Script> */}
 
       {!loadingUserSummary && customBackground && isPro && (
         <>

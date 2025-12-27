@@ -38,7 +38,7 @@ export async function checkSteamStatus(showToast: boolean = false): Promise<bool
 // Fetch the latest.json for tauri updater
 export async function fetchLatest(): Promise<LatestData | null> {
   try {
-    const res = await fetch('https://raw.githubusercontent.com/zevnda/steam-game-idler/main/latest.json')
+    const res = await fetch('https://raw.githubusercontent.com/kaisma0/steam-game-idler/main/latest.json')
     const data = await res.json()
     return data
   } catch (error) {
@@ -210,12 +210,8 @@ export const getAppVersion = async (): Promise<string | undefined> => {
 
 // Log event
 export async function logEvent(message: string): Promise<void> {
-  try {
-    const version = await getVersion()
-    await invoke('log_event', { message: `[v${version}] ${message}` })
-  } catch (error) {
-    console.error('Error in logEvent util: ', error)
-  }
+  // Telemetry disabled
+  return
 }
 
 export function encrypt(string: string): string {
