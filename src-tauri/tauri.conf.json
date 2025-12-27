@@ -46,8 +46,8 @@
   },
   "plugins": {
     "updater": {
-      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEQyMTE5REMyMUFGRUYyQzcKUldUSDh2NGF3cDBSMGh6UVk2a1NKNFV0d1BBcnZsRnFFdDkvTTR0KzJQN0hjOTJzSWFpMFhGaysK",
-      "endpoints": ["https://raw.githubusercontent.com/zevnda/steam-game-idler/main/latest.json"],
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDJCQTE3NUQwQ0E0NTdEOTMKUldTVGZVWEswSFdoSzNIaHRvdEt4UlZkRVVvOFFvaTloV0crMVlFbVFoLzZtSExTY0FPTEIySEUK",
+      "endpoints": ["https://raw.githubusercontent.com/kaisma0/steam-game-idler/main/latest.json"],
       "windows": {
         "installMode": "passive"
       }

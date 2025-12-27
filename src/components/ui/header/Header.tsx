@@ -12,7 +12,7 @@ import { VscChromeClose, VscChromeMaximize, VscChromeMinimize } from 'react-icon
 import Notifications from '@/components/notifications/Notifications'
 import { GoPro } from '@/components/ui/header/GoPro'
 import HeaderMenu from '@/components/ui/header/HeaderMenu'
-import HelpDesk from '@/components/ui/header/HelpDesk'
+// import HelpDesk from '@/components/ui/header/HelpDesk'
 import UpdateButton from '@/components/ui/UpdateButton'
 import useHeader from '@/hooks/ui/useHeader'
 import { isPortableCheck } from '@/utils/tasks'
@@ -82,7 +82,7 @@ export default function Header(): ReactElement {
         <div className='flex justify-end items-center h-full w-full' data-tauri-drag-region>
           {isPortable === false && updateAvailable && <UpdateButton />}
 
-          <HelpDesk />
+         {/* <HelpDesk /> */}
 
           {activePage !== 'setup' && (
             <>
