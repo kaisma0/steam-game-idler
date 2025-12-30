@@ -3,7 +3,7 @@
   "productName": "Steam Game Idler",
   "mainBinaryName": "Steam Game Idler",
   "version": "2.5.21",
-  "identifier": "com.zevnda.steam-game-idler",
+  "identifier": "com.kaisma0.steam-game-idler",
   "build": {
     "beforeDevCommand": "pnpm run dev",
     "beforeBuildCommand": "pnpm run build",
@@ -13,9 +13,9 @@
   "bundle": {
     "active": true,
     "category": "Utility",
-    "copyright": "Copyright © 2024-2025 zevnda",
+    "copyright": "Copyright © 2024-2025 kaisma0",
     "targets": "all",
-    "externalBin": [],
+    "externalBin": ["bin/SteamGameFetcher"],
     "icon": ["icons/icon.ico"],
     "windows": {
       "certificateThumbprint": null,

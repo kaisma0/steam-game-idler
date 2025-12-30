@@ -71,6 +71,9 @@ jobs:
           # Copy the executable
           Copy-Item "./src-tauri/target/release/Steam Game Idler.exe" -Destination "$portableDir/Steam Game Idler.exe"
           
+          # Copy the sidecar
+          Copy-Item "./src-tauri/bin/SteamGameFetcher-x86_64-pc-windows-msvc.exe" -Destination "$portableDir/SteamGameFetcher.exe"
+          
           # Copy the libs folder
           Copy-Item "./src-tauri/libs" -Destination "$portableDir/libs" -Recurse -Force
           
@@ -87,6 +90,7 @@ jobs:
         with:
           tag_name: ${{ github.event.inputs.tag_name }}
           name: Release ${{ github.event.inputs.tag_name }}
+          body: "New Release"
           draft: false
           prerelease: false
           files: |
