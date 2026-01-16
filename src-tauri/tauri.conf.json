@@ -13,9 +13,11 @@
   "bundle": {
     "active": true,
     "category": "Utility",
-    "copyright": "Copyright © 2024-2026 zevnda",
-    "targets": "all",
-    "externalBin": [],
+    "copyright": "Copyright © 2024-2026 kaisma0",
+    "targets": "nsis",
+    "externalBin": [
+      "bin/SteamGameFetcher"
+    ],
     "icon": [
       "icons/icon.ico"
     ],
