@@ -71,6 +71,9 @@ jobs:
           # Copy the executable
           Copy-Item "./src-tauri/target/release/Steam Game Idler.exe" -Destination "$portableDir/Steam Game Idler.exe"
           
+          # Copy the sidecar
+          Copy-Item "./src-tauri/bin/SteamGameFetcher-x86_64-pc-windows-msvc.exe" -Destination "$portableDir/SteamGameFetcher.exe"
+          
           # Copy the libs folder
           Copy-Item "./src-tauri/libs" -Destination "$portableDir/libs" -Recurse -Force
           
@@ -87,12 +90,13 @@ jobs:
         with:
           tag_name: ${{ github.event.inputs.tag_name }}
           name: Release ${{ github.event.inputs.tag_name }}
+          body: "New Release"
           draft: false
           prerelease: false
           files: |
             src-tauri/target/release/bundle/nsis/*.exe
             src-tauri/target/release/bundle/nsis/*.zip
-            src-tauri/target/release/bundle/msi/*.msi
+
             src-tauri/target/release/*-portable.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -109,8 +113,8 @@ jobs:
           
           # Get the correct filename from the signature file (remove .sig)
           $zipName = $sigFile.Name.Replace(".sig", "")
-          # URI Encode the filename for the URL (replace spaces with %20)
-          $urlZipName = $zipName.Replace(" ", "%20")
+          # Replace spaces with dots to match actual release filenames
+          $urlZipName = $zipName.Replace(" ", ".")
           
           # Build the download URL
           $url = "https://github.com/kaisma0/steam-game-idler/releases/download/${{ github.event.inputs.tag_name }}/$urlZipName"
@@ -146,3 +150,4 @@ jobs:
           git push origin HEAD:main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ALLOW_MAIN_COMMIT: "1"
