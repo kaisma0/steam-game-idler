@@ -1,10 +1,11 @@
 {
-  "version": "4.0.3",
-  "major": false,
   "platforms": {
     "windows-x86_64": {
-      "signature": "PLACEHOLDER_WILL_BE_UPDATED_BY_WORKFLOW",
-      "url": "https://github.com/kaisma0/steam-game-idler/releases/download/4.0.3/Steam.Game.Idler_4.0.3_x64-setup.nsis.zip"
+      "url": "https://github.com/kaisma0/steam-game-idler/releases/download/v4.0.3/Steam.Game.Idler_4.0.3_x64-setup.nsis.zip",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTVGZVWEswSFdoSzZ5NUc2bmhmMFhLSmJLaWJBaEQrZnNEVUFQY0dIYkNrcDdsWnA4Sy9KZ214UFVOcktKVTlkYWZoOHV3Mk1HYWxOVWExRnhMOE9PZStGSmpBZlAya3d3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzcwODMxNDQ1CWZpbGU6U3RlYW0gR2FtZSBJZGxlcl80LjAuM194NjQtc2V0dXAubnNpcy56aXAKdmlzWklsZ3BGeTlXa0dra3hoS1ZqanpQSVdYR21JVXlFR1NLMWJYNXhiUmYxOHFYem5tVjFoV05vc2sxcnRQT3Zlb0gxSjZaREFodElhdWQvMVRuQmc9PQo="
     }
-  }
+  },
+  "notes": "Release v4.0.3",
+  "major": false,
+  "version": "4.0.3"
 }
