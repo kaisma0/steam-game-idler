@@ -423,7 +423,7 @@ export default function TermsOfService() {
               SGI is developed as an open-source project. You can contribute to its development,
               report issues, or suggest improvements through our{' '}
               <a
-                href='https://github.com/zevnda/steam-game-idler'
+                href='https://github.com/kaisma0/steam-game-idler'
                 className='text-blue-400 hover:text-blue-300 underline'
                 target='_blank'
                 rel='noopener noreferrer'
@@ -466,7 +466,7 @@ export default function TermsOfService() {
               <li>
                 <strong>GitHub Issues:</strong>{' '}
                 <a
-                  href='https://github.com/zevnda/steam-game-idler/issues'
+                  href='https://github.com/kaisma0/steam-game-idler/issues'
                   className='text-blue-400 hover:text-blue-300 underline'
                   target='_blank'
                   rel='noopener noreferrer'
@@ -477,7 +477,7 @@ export default function TermsOfService() {
               <li>
                 <strong>GitHub Discussions:</strong>{' '}
                 <a
-                  href='https://github.com/zevnda/steam-game-idler/discussions'
+                  href='https://github.com/kaisma0/steam-game-idler/discussions'
                   className='text-blue-400 hover:text-blue-300 underline'
                   target='_blank'
                   rel='noopener noreferrer'

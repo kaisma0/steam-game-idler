@@ -40,7 +40,7 @@ export async function checkSteamStatus(showToast: boolean) {
 export async function fetchLatest() {
   try {
     const res = await fetch(
-      'https://raw.githubusercontent.com/zevnda/steam-game-idler/main/latest.json',
+      'https://raw.githubusercontent.com/kaisma0/steam-game-idler/main/latest.json',
     )
     const data = await res.json()
     return data

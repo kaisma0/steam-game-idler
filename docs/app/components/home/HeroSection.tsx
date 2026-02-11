@@ -148,7 +148,7 @@ export default function HeroSection() {
                 v{latestVersion} Available
               </div>
 
-              <Link href='https://github.com/zevnda/steam-game-idler'>
+              <Link href='https://github.com/kaisma0/steam-game-idler'>
                 <div className='inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-linear-to-r from-yellow-100 to-yellow-300 border border-yellow-300 rounded-full text-yellow-800 text-xs sm:text-sm font-medium shadow-lg'>
                   <FaStar className='text-yellow-500 mr-1' />
                   Star on GitHub{' '}
@@ -198,7 +198,7 @@ export default function HeroSection() {
 
               <Link
                 prefetch={false}
-                href='https://github.com/zevnda/steam-game-idler'
+                href='https://github.com/kaisma0/steam-game-idler'
                 target='_blank'
                 className='inline-flex items-center justify-center px-3 sm:px-3 md:px-4 py-3 sm:py-3 md:py-4 bg-white border-2 border-purple-300 text-purple-700 font-bold rounded-xl hover:bg-purple-50 hover:border-purple-400 transition-colors duration-200 shadow-md text-sm md:text-base'
               >

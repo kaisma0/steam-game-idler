@@ -38,7 +38,7 @@ export default function DocsCTA() {
 
             <Link
               prefetch={false}
-              href='https://github.com/zevnda/steam-game-idler'
+              href='https://github.com/kaisma0/steam-game-idler'
               target='_blank'
               rel='noopener noreferrer'
               className='inline-flex items-center justify-center px-4 py-2 border border-neutral-300 text-neutral-700 text-sm font-medium rounded-md hover:bg-neutral-100 transition-colors dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800'

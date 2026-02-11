@@ -18,7 +18,7 @@ export default function Layout({ children }: LayoutProps) {
       links={[
         {
           type: 'icon',
-          url: 'https://github.com/zevnda/steam-game-idler',
+          url: 'https://github.com/kaisma0/steam-game-idler',
           label: 'github',
           text: 'Github',
           icon: <FaGithub />,

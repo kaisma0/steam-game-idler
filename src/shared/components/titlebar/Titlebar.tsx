@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { TbLayoutSidebar, TbLayoutSidebarFilled } from 'react-icons/tb'
 import { VscChromeClose, VscChromeMaximize, VscChromeMinimize } from 'react-icons/vsc'
 import { cn } from '@heroui/react'
-import { GoPro, HelpDesk, Menu, Notifications, UpdateButton } from '@/shared/components'
+import { GoPro, Menu, Notifications, UpdateButton } from '@/shared/components'
 import { useTitlebar } from '@/shared/hooks'
 import {
   useLoaderStore,
@@ -26,7 +26,7 @@ export const Titlebar = () => {
   const [isPortable, setIsPortable] = useState<boolean | null>(null)
 
   useEffect(() => {
-    ;(async () => {
+    ; (async () => {
       const portable = await isPortableCheck()
       setIsPortable(portable)
     })()
@@ -86,8 +86,6 @@ export const Titlebar = () => {
 
         <div className='flex justify-end items-center h-full w-full' data-tauri-drag-region>
           {isPortable === false && updateAvailable && <UpdateButton />}
-
-          <HelpDesk />
 
           {!loaderVisible && activePage !== 'setup' && (
             <>

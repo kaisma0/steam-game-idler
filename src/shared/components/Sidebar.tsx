@@ -16,7 +16,7 @@ import {
 } from 'react-icons/tb'
 import { Button, cn, Divider } from '@heroui/react'
 import Image from 'next/image'
-import { AdSlot, Beta, Brand, CustomModal, Searchbar } from '@/shared/components'
+import { Beta, Brand, CustomModal, Searchbar } from '@/shared/components'
 import { useSidebar } from '@/shared/hooks'
 import {
   useIdleStore,
@@ -29,7 +29,6 @@ import {
 export const Sidebar = () => {
   const { t } = useTranslation()
   const [showSearchModal, setShowSearchModal] = useState(false)
-  const isPro = useUserStore(state => state.isPro)
   const activePage = useNavigationStore(state => state.activePage)
   const setActivePage = useNavigationStore(state => state.setActivePage)
   const freeGamesList = useUserStore(state => state.freeGamesList)
@@ -286,12 +285,6 @@ export const Sidebar = () => {
           {mainSidebarItems.map((item, idx) => renderSidebarItem(item, idx))}
         </div>
 
-        {process.env.NODE_ENV === 'production' && (
-          <div className='absolute bottom-8 left-0 right-0 flex flex-col items-center justify-end grow mb-1 overflow-hidden pointer-events-none'>
-            <AdSlot isPro={isPro} />
-          </div>
-        )}
-
         {/* Settings and signout */}
         <div
           className={cn(
@@ -336,9 +329,9 @@ export const Sidebar = () => {
                     onClick={
                       !(isCardFarming || isAchievementUnlocker)
                         ? () => {
-                            setShowAchievements(false)
-                            setActivePage('settings')
-                          }
+                          setShowAchievements(false)
+                          setActivePage('settings')
+                        }
                         : undefined
                     }
                   >
@@ -372,9 +365,9 @@ export const Sidebar = () => {
                   onClick={
                     !(isCardFarming || isAchievementUnlocker)
                       ? () => {
-                          setShowAchievements(false)
-                          setActivePage('settings')
-                        }
+                        setShowAchievements(false)
+                        setActivePage('settings')
+                      }
                       : undefined
                   }
                 >
