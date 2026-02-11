@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Inter } from 'next/font/google'
 import Head from 'next/head'
 import Image from 'next/image'
-import Script from 'next/script'
+
 import { Titlebar } from '@/shared/components'
 import { useStateStore, useUserStore } from '@/shared/stores'
 
@@ -30,17 +30,6 @@ export const Layout = ({ children }: React.PropsWithChildren) => {
       <Head>
         <title>Steam Game Idler</title>
       </Head>
-
-      <Script id='chatway' src='https://cdn.chatway.app/widget.js?id=1F2cY0TT2RKh' />
-      <Script id='chatway-hide-icon' strategy='afterInteractive'>
-        {`
-          window.$chatwayOnLoad = function() {
-            if (window.$chatway && typeof window.$chatway.hideChatwayIcon === 'function') {
-              window.$chatway.hideChatwayIcon();
-            }
-          };
-        `}
-      </Script>
 
       {!loadingUserSummary && customBackground && isPro && (
         <>

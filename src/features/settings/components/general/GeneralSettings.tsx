@@ -15,7 +15,6 @@ export const GeneralSettings = () => {
   const { t } = useTranslation()
   const userSummary = useUserStore(state => state.userSummary)
   const setUserSettings = useUserStore(state => state.setUserSettings)
-  const isPro = useUserStore(state => state.isPro)
   const { keyValue, setKeyValue, hasKey, setHasKey } = useGeneralSettings()
 
   return (
@@ -52,18 +51,7 @@ export const GeneralSettings = () => {
               <span className='transition-all duration-200'>{userSummary?.steamId}</span>
             </p>
           </div>
-          {isPro && (
-            <ExtLink href='https://billing.stripe.com/p/login/8x23cwf8CeNE6PLaAecbC00'>
-              <div
-                className={cn(
-                  'flex justify-center items-center w-full rounded-full',
-                  'text-black bg-white font-semibold text-xs py-2 px-3',
-                )}
-              >
-                {t('settings.general.manageSubscription')}
-              </div>
-            </ExtLink>
-          )}
+
         </div>
 
         <Divider className='bg-border/70 my-4' />
@@ -119,7 +107,7 @@ export const GeneralSettings = () => {
               <Trans i18nKey='settings.general.helpTranslate'>
                 Help translate SGI.&nbsp;
                 <ExtLink
-                  href='https://github.com/zevnda/steam-game-idler/discussions/148'
+                  href='https://github.com/kaisma0/steam-game-idler/discussions/148'
                   className='text-dynamic hover:text-dynamic-hover duration-150'
                 >
                   Learn more

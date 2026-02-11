@@ -197,7 +197,7 @@ export default function PrivacyPolicy() {
             </p>
             <ul className='list-disc pl-6 space-y-2'>
               <li>
-                <strong>Windows:</strong> %AppData%\Roaming\com.zevnda.steam-game-idler
+                <strong>Windows:</strong> %AppData%\Roaming\com.kaisma0.steam-game-idler
               </li>
             </ul>
           </section>
@@ -417,7 +417,7 @@ export default function PrivacyPolicy() {
               Steam Game Idler is fully open source. You can review our code, data handling
               practices, and security measures at our
               <a
-                href='https://github.com/zevnda/steam-game-idler'
+                href='https://github.com/kaisma0/steam-game-idler'
                 className='text-blue-400 hover:text-blue-300 underline'
                 target='_blank'
                 rel='noopener noreferrer'
@@ -453,7 +453,7 @@ export default function PrivacyPolicy() {
               <li>
                 <strong>GitHub Issues:</strong>{' '}
                 <a
-                  href='https://github.com/zevnda/steam-game-idler/issues'
+                  href='https://github.com/kaisma0/steam-game-idler/issues'
                   className='text-blue-400 hover:text-blue-300 underline'
                   target='_blank'
                   rel='noopener noreferrer'
@@ -464,7 +464,7 @@ export default function PrivacyPolicy() {
               <li>
                 <strong>GitHub Discussions:</strong>{' '}
                 <a
-                  href='https://github.com/zevnda/steam-game-idler/discussions'
+                  href='https://github.com/kaisma0/steam-game-idler/discussions'
                   className='text-blue-400 hover:text-blue-300 underline'
                   target='_blank'
                   rel='noopener noreferrer'

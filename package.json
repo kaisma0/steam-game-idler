@@ -2,7 +2,7 @@
   "name": "steam-game-idler",
   "version": "0.1.0",
   "description": "Farm trading cards, manage achievements, and boost playtime effortlessly with Steam Game Idler",
-  "author": "zevnda",
+  "author": "kaisma0",
   "private": true,
   "workspaces": [
     "docs"
@@ -21,7 +21,6 @@
     "lint:docs": "pnpm --filter steam-game-idler-docs lint",
     "lint:all": "pnpm lint && pnpm lint:docs",
     "tauri": "tauri",
-    "prepare": "husky",
     "prettier": "prettier --write .",
     "typecheck": "tsc --noEmit",
     "td": "tauri dev",
@@ -80,7 +79,6 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-unused-imports": "^4.3.0",
-    "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
     "postcss": "^8.5.6",
     "prettier": "^3.7.4",

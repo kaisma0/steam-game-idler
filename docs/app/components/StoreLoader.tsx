@@ -9,7 +9,7 @@ export default function StoreLoader() {
   // Fetch the latest release information from the GitHub API
   useEffect(() => {
     try {
-      fetch('https://api.github.com/repos/zevnda/steam-game-idler/releases/latest')
+      fetch('https://api.github.com/repos/kaisma0/steam-game-idler/releases/latest')
         .then(response => response.json())
         .then(data => {
           // Set the latest version from the tag name
@@ -32,7 +32,7 @@ export default function StoreLoader() {
   // Fetch the number of stars from the GitHub API
   useEffect(() => {
     try {
-      fetch('https://api.github.com/repos/zevnda/steam-game-idler')
+      fetch('https://api.github.com/repos/kaisma0/steam-game-idler')
         .then(response => response.json())
         .then(data => {
           if (typeof data.stargazers_count === 'number') {

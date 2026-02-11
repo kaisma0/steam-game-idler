@@ -50,8 +50,8 @@ export const metadata = {
     'Steam Achievement Manager Alternative',
     'Idle Master Alternative',
   ],
-  authors: [{ name: 'zevnda', url: 'https://github.com/zevnda' }],
-  creator: 'zevnda',
+  authors: [{ name: 'kaisma0', url: 'https://github.com/kaisma0' }],
+  creator: 'kaisma0',
   generator: 'Next.js',
   applicationName: 'Steam Game Idler',
   appleWebApp: {
@@ -76,7 +76,7 @@ export const metadata = {
   other: {
     'msapplication-TileColor': '#fff',
     'google-site-verification': 'gOZEIhRh4BCNzE1r4etZeuJoex3aVaUrATjMnsnyYuY',
-    'google-adsense-account': 'ca-pub-8915288433444527',
+
     'bdbfaa2fd4578c4db1970a32318ef980869bbd26': 'bdbfaa2fd4578c4db1970a32318ef980869bbd26',
     'referrer': 'strict-origin-when-cross-origin',
   },
@@ -143,12 +143,6 @@ export default function Layout({ children }: LayoutProps) {
         <Script
           type='application/ld+json'
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
-        />
-
-        <script
-          async
-          src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8915288433444527'
-          crossOrigin='anonymous'
         />
 
         <HelpDesk />

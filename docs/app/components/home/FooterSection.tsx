@@ -32,7 +32,7 @@ export default function FooterSection() {
             </p>
             <div className='flex gap-4'>
               <a
-                href='https://github.com/zevnda/steam-game-idler'
+                href='https://github.com/kaisma0/steam-game-idler'
                 target='_blank'
                 rel='noopener noreferrer'
                 className='w-9 h-9 sm:w-10 sm:h-10 bg-white border-2 border-indigo-200 flex items-center justify-center rounded-lg hover:border-indigo-400 hover:bg-indigo-50 transition-colors duration-200 shadow-sm'
@@ -74,7 +74,7 @@ export default function FooterSection() {
                 </li>
                 <li>
                   <a
-                    href='https://github.com/zevnda/steam-game-idler'
+                    href='https://github.com/kaisma0/steam-game-idler'
                     target='_blank'
                     rel='noopener noreferrer'
                     className='text-sm sm:text-base text-gray-600 hover:text-indigo-700 transition-colors duration-200 flex items-center gap-2 sm:gap-3'

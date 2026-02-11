@@ -2,7 +2,7 @@
   "name": "steam-game-idler-docs",
   "version": "0.1.0",
   "description": "Documentation for Steam Game Idler",
-  "author": "zevnda",
+  "author": "kaisma0",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

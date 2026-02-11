@@ -31,7 +31,7 @@ export const ChangelogModal = () => {
   }, [onOpen, showChangelog, setShowChangelog, isVersionLoaded])
 
   useEffect(() => {
-    ;(async () => {
+    ; (async () => {
       try {
         const version = await getVersion()
         setAppVersion(version)
@@ -79,7 +79,7 @@ export const ChangelogModal = () => {
             radius='full'
             className='font-semibold'
             startContent={<FaStar size={20} />}
-            onPress={() => openExternalLink('https://github.com/zevnda/steam-game-idler')}
+            onPress={() => openExternalLink('https://github.com/kaisma0/steam-game-idler')}
           >
             {t('changelog.star')}
           </Button>

@@ -3,7 +3,7 @@
   "productName": "Steam Game Idler",
   "mainBinaryName": "Steam Game Idler",
   "version": "4.0.3",
-  "identifier": "com.zevnda.steam-game-idler",
+  "identifier": "com.kaisma0.steam-game-idler",
   "build": {
     "beforeDevCommand": "pnpm run dev",
     "beforeBuildCommand": "pnpm run build",
@@ -13,10 +13,12 @@
   "bundle": {
     "active": true,
     "category": "Utility",
-    "copyright": "Copyright © 2024-2026 zevnda",
+    "copyright": "Copyright © 2024-2026 kaisma0",
     "targets": "all",
     "externalBin": [],
-    "icon": ["icons/icon.ico"],
+    "icon": [
+      "icons/icon.ico"
+    ],
     "windows": {
       "certificateThumbprint": null,
       "digestAlgorithm": "sha256",
@@ -35,19 +37,23 @@
       "providerShortName": null,
       "signingIdentity": null
     },
-    "resources": ["libs/*", "LICENSE", ".installed"],
+    "resources": [
+      "libs/*",
+      ".installed"
+    ],
     "linux": {
       "deb": {
         "depends": []
       }
     },
-    "licenseFile": "LICENSE",
     "createUpdaterArtifacts": "v1Compatible"
   },
   "plugins": {
     "updater": {
-      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEQyMTE5REMyMUFGRUYyQzcKUldUSDh2NGF3cDBSMGh6UVk2a1NKNFV0d1BBcnZsRnFFdDkvTTR0KzJQN0hjOTJzSWFpMFhGaysK",
-      "endpoints": ["https://raw.githubusercontent.com/zevnda/steam-game-idler/main/latest.json"],
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDJCQTE3NUQwQ0E0NTdEOTMKUldTVGZVWEswSFdoSzNIaHRvdEt4UlZkRVVvOFFvaTloV0crMVlFbVFoLzZtSExTY0FPTEIySEUK",
+      "endpoints": [
+        "https://raw.githubusercontent.com/kaisma0/steam-game-idler/main/latest.json"
+      ],
       "windows": {
         "installMode": "passive"
       }
