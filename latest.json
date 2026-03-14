@@ -1,10 +1,11 @@
 {
-  "version": "4.0.8",
   "major": false,
   "platforms": {
     "windows-x86_64": {
-      "signature": "PLACEHOLDER_WILL_BE_UPDATED_BY_WORKFLOW",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTVGZVWEswSFdoSzFWSXNOU3lvN2JJcktYejBjWTI3U2FMZUJWbE9iMFN5QW5tTUNTOStPTzVNVXZud2p1SnhHTWFEK2RoMkQ2Mk5ZdnFTUmlVeFJjZFlpTlM3WGFRTGdBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzczNDc2ODkyCWZpbGU6U3RlYW0gR2FtZSBJZGxlcl80LjAuOF94NjQtc2V0dXAubnNpcy56aXAKY1NxUkx5ZmpMdFFkWjV1ckhtbU1meDJEbmRvenlhMXVQbnc3UTJ2OFhqY0RycWl0YS9OQWZxNGg1MkpxRW9PelVkeFdIbUhKTGk2M0JycWsvbGJKQlE9PQo=",
       "url": "https://github.com/kaisma0/steam-game-idler/releases/download/4.0.8/Steam.Game.Idler_4.0.8_x64-setup.nsis.zip"
     }
-  }
+  },
+  "version": "4.0.8",
+  "notes": "Release 4.0.8"
 }
