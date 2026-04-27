@@ -4,7 +4,7 @@
   "platforms": {
     "windows-x86_64": {
       "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVUSDh2NGF3cDBSMHY0Z2ZFNUFSckRLNzBpVzlHREZkL3hEVFZ2b3V5dGNJaStEek45MG05T2VGM3BySWpzRjd0TmhYUGhpdndDSnRCK0JGQTFHUnZhOFM3SGVpbE1iR0FvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgyNzY0NzYzCWZpbGU6U3RlYW0gR2FtZSBJZGxlcl81LjQuMV94NjQtc2V0dXAubnNpcy56aXAKTzgxenFrWStyakxWbitBbFpTWkI3Z2NUa0pDS3ptdXBtdDdIRmZoL0E1ZVBxbWJLaTA2cC9JU3BNSlBEZFErUGJDcVpsalhENDFWUkR1ODNwMTNJRHc9PQo=",
-      "url": "https://github.com/zevnda/steam-game-idler/releases/download/5.4.1/Steam.Game.Idler_5.4.1_x64-setup.nsis.zip"
+      "url": "https://github.com/kaisma0/steam-game-idler/releases/download/5.4.1/Steam.Game.Idler_5.4.1_x64-setup.nsis.zip"
     }
   }
 }

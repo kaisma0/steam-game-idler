@@ -196,14 +196,6 @@ svg {
   }
 }
 
-/* Chatway */
-
-.chatway--frame-container {
-  min-width: 550px !important;
-  top: 48px !important;
-  right: 36px !important;
-  left: auto !important;
-}
 
 /* Go pro button */
 
