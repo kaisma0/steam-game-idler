@@ -16,7 +16,7 @@ import {
 } from 'react-icons/tb'
 import { Button, cn, Divider } from '@heroui/react'
 import Image from 'next/image'
-import { AdSlot, Beta, Brand, CustomModal, Searchbar } from '@/shared/components'
+import { Beta, Brand, CustomModal, Searchbar } from '@/shared/components'
 import { useSidebar } from '@/shared/hooks'
 import {
   useIdleStore,
@@ -289,7 +289,6 @@ export const Sidebar = () => {
 
         {process.env.NODE_ENV === 'development' && (
           <div className='absolute bottom-8 left-0 right-0 flex flex-col items-center justify-end grow mb-1 overflow-hidden pointer-events-none'>
-            <AdSlot />
           </div>
         )}
 

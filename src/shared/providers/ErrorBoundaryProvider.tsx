@@ -95,7 +95,7 @@ ${errorInfo && errorInfo.componentStack}
 
             <div className='flex gap-4'>
               <ExtLink
-                href={`https://github.com/zevnda/steam-game-idler/issues/new?title=${encodedTitle}&body=${encodedBody}`}
+                href={`https://github.com/kaisma0/steam-game-idler/issues/new?title=${encodedTitle}&body=${encodedBody}`}
               >
                 <div className='bg-warning p-2 font-semibold rounded-lg'>
                   <p className='text-xs'>Report on GitHub</p>

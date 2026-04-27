@@ -14,7 +14,7 @@ export const SocialButtons = () => {
         </p>
       </ExtLink>
 
-      <ExtLink href='https://github.com/zevnda/steam-game-idler'>
+      <ExtLink href='https://github.com/kaisma0/steam-game-idler'>
         <p className='bg-transparent rounded-full hover:bg-item-active p-2 duration-150'>
           <FaGithub size={20} />
         </p>

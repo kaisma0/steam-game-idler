@@ -3,8 +3,8 @@
   "major": false,
   "platforms": {
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVUSDh2NGF3cDBSMG53dVYrNHVkckZhM0owSWw1THhrSUpFeTJRY2pyOXBlejk3Z1NUSjNRSFBFeEY3VTNGUE1OUnlOMU9zc2cwUEZqS3lTVkFoU012bmVteUxxYlNRNEFnPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzc1ODAwMDYzCWZpbGU6U3RlYW0gR2FtZSBJZGxlcl81LjAuNF94NjQtc2V0dXAubnNpcy56aXAKZzBCTzdnYWMxbERFb0JZVG01SHpvaHR3SFcvYzIwWnhEVDdGWGV0clRyN0k4MjBadkc0ZHhrZHV0bGtHeUdVRU1LaEk5bEt5U2ZuZnpHRDVZeXdaRHc9PQo=",
-      "url": "https://github.com/zevnda/steam-game-idler/releases/download/5.0.4/Steam.Game.Idler_5.0.4_x64-setup.nsis.zip"
+      "signature": "PLACEHOLDER_WILL_BE_UPDATED_BY_WORKFLOW",
+      "url": "https://github.com/kaisma0/steam-game-idler/releases/download/5.0.4/Steam.Game.Idler_5.0.4_x64-setup.nsis.zip"
     }
   }
 }
