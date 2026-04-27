@@ -65,12 +65,12 @@ export const useUserStore = create<UserStore>(set => ({
     set(state => ({
       freeGamesList: typeof value === 'function' ? value(state.freeGamesList) : value,
     })),
-  isSubscribed: null,
+  isSubscribed: true,
   setIsSubscribed: value =>
     set(state => ({
       isSubscribed: typeof value === 'function' ? value(state.isSubscribed) : value,
     })),
-  subscriptionTier: null,
+  subscriptionTier: 'gamer',
   setSubscriptionTier: value =>
     set(state => ({
       subscriptionTier: typeof value === 'function' ? value(state.subscriptionTier) : value,

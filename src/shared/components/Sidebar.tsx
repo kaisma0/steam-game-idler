@@ -14,7 +14,7 @@ import {
 } from 'react-icons/tb'
 import { Button, cn, Divider } from '@heroui/react'
 import Image from 'next/image'
-import { AdSlot, Beta, Brand, CustomModal } from '@/shared/components'
+import { Beta, Brand, CustomModal } from '@/shared/components'
 import { useSidebar } from '@/shared/hooks'
 import { useIdleStore, useNavigationStore, useStateStore, useUserStore } from '@/shared/stores'
 
@@ -227,11 +227,6 @@ export const Sidebar = () => {
           {mainSidebarItems.map((item, idx) => renderSidebarItem(item, idx))}
         </div>
 
-        {process.env.NODE_ENV === 'production' && (
-          <div className='flex flex-col items-center justify-center shrink-0 w-full overflow-hidden pointer-events-none'>
-            <AdSlot />
-          </div>
-        )}
 
         {/* Settings and signout */}
         <div

@@ -3,14 +3,6 @@ name: Build release bundle
 on:
   workflow_dispatch:
     inputs:
-      version:
-        description: "New Version"
-        required: true
-      is_major:
-        description: "Major update"
-        required: false
-        type: boolean
-        default: false
       force_dotnet_build:
         description: "Force .NET rebuild"
         required: false
@@ -32,79 +24,36 @@ on:
         type: boolean
         default: false
 
-run-name: Build release v${{ github.event.inputs.version }}
-
 permissions:
   contents: write
   pull-requests: write
 
 jobs:
-  fetch_previous_version:
+  get_version:
     runs-on: ubuntu-latest
     outputs:
-      previous_version: ${{ steps.get_version.outputs.previous_version }}
+      version: ${{ steps.extract.outputs.version }}
     steps:
-      - name: Get latest release version
-        id: get_version
+      - name: Checkout repository
+        uses: actions/checkout@v7
+      - name: Extract version from latest.json
+        id: extract
         run: |
-          PREVIOUS_VERSION=$(curl -s https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r .tag_name)
-          echo "Found previous version: $PREVIOUS_VERSION"
-          echo "previous_version=$PREVIOUS_VERSION" >> $GITHUB_OUTPUT
-
-  validate_version:
-    runs-on: ubuntu-latest
-    needs: fetch_previous_version
-    steps:
-      - name: Validate semantic version format
-        id: validate_format
-        uses: matt-usurp/validate-semver@v2
-        with:
-          version: ${{ github.event.inputs.version }}
-      
-      - name: Validate version increment
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const prev = '${{ needs.fetch_previous_version.outputs.previous_version }}'.replace(/^v/, '');
-            const next = '${{ github.event.inputs.version }}'.replace(/^v/, '');
-            
-            const [prevMajor, prevMinor, prevPatch] = prev.split('.').map(Number);
-            const [nextMajor, nextMinor, nextPatch] = next.split('.').map(Number);
-            
-            // Check if it's a valid increment
-            const isMajor = nextMajor > prevMajor && nextMinor === 0 && nextPatch === 0;
-            const isMinor = nextMajor === prevMajor && nextMinor > prevMinor && nextPatch === 0;
-            const isPatch = nextMajor === prevMajor && nextMinor === prevMinor && nextPatch === prevPatch + 1;
-            
-            if (!isMajor && !isMinor && !isPatch) {
-              const validOptions = [
-                `${prevMajor}.${prevMinor}.${prevPatch + 1} (patch)`,
-                `${prevMajor}.${prevMinor + 1}.0 (minor)`,
-                `${prevMajor + 1}.0.0 (major)`
-              ];
-              
-              core.setFailed(
-                `❌ Invalid version increment!\n\n` +
-                `Current: ${prev}\n` +
-                `Attempted: ${next}\n\n` +
-                `Valid options:\n${validOptions.map(v => `  • ${v}`).join('\n')}`
-              );
-            }
-            
-            console.log(`✅ Valid version increment: ${prev} → ${next}`);
+          VERSION=$(jq -r .version latest.json)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
 
   build_dotnet_libs:
     runs-on: windows-latest
-    needs: [fetch_previous_version, validate_version]
+    needs: [get_version]
     timeout-minutes: 15
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           submodules: recursive
 
       - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v2
+        uses: microsoft/setup-msbuild@v3
 
       - name: Prepare NuGet cache directory
         run: |
@@ -116,7 +65,7 @@ jobs:
 
       - name: Setup NuGet cache
         id: cache-msbuild
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: |
             C:\Users\runneradmin\.nuget\packages
@@ -126,7 +75,7 @@ jobs:
 
       - name: Setup .NET cache
         id: cache-dotnet
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: src-tauri/libs/
           key: ${{ runner.os }}-dotnet-${{ hashFiles('libs/**/*.cs', 'libs/**/*.csproj') }}
@@ -139,34 +88,34 @@ jobs:
         shell: pwsh
 
       - name: Upload built .NET libraries
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: dotnet-libs
           path: src-tauri/libs/
           retention-days: 1
 
   build_release_bundle:
-    needs: [build_dotnet_libs, fetch_previous_version, validate_version]
+    needs: [build_dotnet_libs, get_version]
     timeout-minutes: 30
     runs-on: windows-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           submodules: recursive
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 24
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v6
         with:
           version: 9
 
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.x"
 
@@ -175,7 +124,7 @@ jobs:
 
       - name: Setup pnpm cache
         id: cache-pnpm
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: |
             ~/.pnpm-store
@@ -190,7 +139,7 @@ jobs:
 
       - name: Setup Next.js cache
         id: cache-nextjs
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: .next/cache
           key: ${{ runner.OS }}-nextjs-${{ hashFiles('**.[jt]sx', '**.[jt]s', 'package.json') }}
@@ -219,20 +168,6 @@ jobs:
         run: cargo clean
         working-directory: ./src-tauri
 
-      - name: Update version numbers
-        id: update-versions
-        run: |
-          $previousVersion = "${{ needs.fetch_previous_version.outputs.previous_version }}"
-          $newVersion = "${{ github.event.inputs.version }}"
-
-          $tauriConf = Get-Content src-tauri/tauri.conf.json
-          $updatedTauriConf = $tauriConf -replace $previousVersion, $newVersion
-          $updatedTauriConf | Set-Content src-tauri/tauri.conf.json
-
-          $latest = Get-Content latest.json
-          $updatedLatest = $latest -replace $previousVersion, $newVersion
-          $updatedLatest | Set-Content latest.json
-
       - name: Create .env file
         run: |
           echo "KEY=${{ secrets.KEY }}" > .env
@@ -240,13 +175,12 @@ jobs:
         working-directory: ${{ github.workspace }}
 
       - name: Download built .NET libraries
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: dotnet-libs
           path: src-tauri/libs/
 
       - name: Build and package Tauri app
-        if: steps.update-versions.outcome == 'success'
         run: |
           $env:NEXT_TELEMETRY_DISABLED = "1"
           $env:TAURI_CI = "1"
@@ -263,7 +197,7 @@ jobs:
           import base64
           import json
 
-          nsis_signature_path = './src-tauri/target/release/bundle/nsis/Steam Game Idler_${{ github.event.inputs.version }}_x64-setup.nsis.zip.sig'
+          nsis_signature_path = './src-tauri/target/release/bundle/nsis/Steam Game Idler_${{ needs.get_version.outputs.version }}_x64-setup.nsis.zip.sig'
           latest_json_path = './latest.json'
 
           with open(nsis_signature_path, 'r') as sig_file:
@@ -273,8 +207,12 @@ jobs:
               latest_json = json.load(json_file)
 
           latest_json['platforms']['windows-x86_64']['signature'] = new_signature
+          
+          # Also ensure the URL is perfectly matched with the current version
+          version = '${{ needs.get_version.outputs.version }}'
+          latest_json['platforms']['windows-x86_64']['url'] = f'https://github.com/kaisma0/steam-game-idler/releases/download/{version}/Steam.Game.Idler_{version}_x64-setup.nsis.zip'
 
-          is_major = True if '${{ github.event.inputs.is_major }}' == 'true' else False
+          is_major = False
           latest_json['major'] = is_major
 
           with open(latest_json_path, 'w') as json_file:
@@ -283,69 +221,15 @@ jobs:
           print('Updated latest.json with new signature')
           "
 
-      - uses: actions/create-github-app-token@v1
-        id: generate-token
+      - name: Commit signature to latest.json
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
-          app-id: ${{ secrets.APP_ID }}
-          private-key: ${{ secrets.APP_PRIVATE_KEY }}
-
-      - name: Create PR for version changes
-        id: create-pr
-        uses: peter-evans/create-pull-request@v7
-        with:
-          token: ${{ steps.generate-token.outputs.token }}
-          commit-message: "chore(version): bump to ${{ github.event.inputs.version }}"
-          title: "chore(version): bump to ${{ github.event.inputs.version }}"
-          body: |
-            Automated version bump for release [v${{ github.event.inputs.version }}](https://github.com/zevnda/steam-game-idler/releases/tag/${{ github.event.inputs.version }})
-
-            Generated by workflow run [${{ github.run_id }}](https://github.com/zevnda/steam-game-idler/actions/runs/${{ github.run_id }})
-
-            Merging this PR allows the release to be distributed through Tauri Updater for auto-updates
-          branch: "version-bump-${{ github.event.inputs.version }}-${{ github.run_id }}"
-          base: "main"
-          add-paths: |
-            src-tauri/tauri.conf.json
-            latest.json
-          sign-commits: true
-
+          commit_message: "chore(version): add signature for v${{ needs.get_version.outputs.version }}"
+          file_pattern: 'latest.json'
       - name: Generate release notes
         id: generate_notes
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const { data } = await github.rest.repos.generateReleaseNotes({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              tag_name: '${{ github.event.inputs.version }}',
-              previous_tag_name: '${{ needs.fetch_previous_version.outputs.previous_version }}'
-            });
-            
-            // Remove lines for version bumps, docs, ci, etc
-            let body = data.body;
-            const lines = body.split('\n');
-            const filtered = lines.filter(line => {
-              const trimmed = line.trim();
-              if (trimmed.startsWith('* chore: update changelog')) return false;
-              if (trimmed.startsWith('* chore(version): bump to')) return false;
-              if (trimmed.startsWith('* chore: push notification')) return false;
-              if (trimmed.startsWith('* chore(i18n): pull translations from crowdin')) return false;
-              if (trimmed.startsWith('* chore(ci):')) return false;
-              if (trimmed.startsWith('* ci:')) return false;
-              if (trimmed.startsWith('* docs:')) return false;
-              return true;
-            });
-            
-            const cleanedBody = filtered.join('\n');
-            
-            // Save to file
-            const fs = require('fs');
-            fs.writeFileSync('./release_notes.md', cleanedBody);
-            
-            console.log('Generated release notes:');
-            console.log(cleanedBody);
-            
-            return cleanedBody;
+        run: |
+          echo "Release v${{ needs.get_version.outputs.version }}" > release_notes.md
 
       - name: Prepare portable executable
         run: |
@@ -358,66 +242,30 @@ jobs:
           
           # Copy the libs folder
           Copy-Item "./src-tauri/libs" -Destination "$portableDir/libs" -Recurse -Force
-
-          # Copy the LICENSE file
-          Copy-Item "./LICENSE" -Destination "$portableDir/LICENSE" -Force
           
           # Create the portable zip
-          Compress-Archive -Path "$portableDir/*" -DestinationPath "./src-tauri/target/release/Steam Game Idler_${{ github.event.inputs.version }}_x64-portable.zip" -Force
+          Compress-Archive -Path "$portableDir/*" -DestinationPath "./src-tauri/target/release/Steam Game Idler_${{ needs.get_version.outputs.version }}_x64-portable.zip" -Force
           
           # Clean up temporary directory
           Remove-Item -Recurse -Force $portableDir
         shell: pwsh
 
       - name: Create release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.event.inputs.version }}
-          name: Steam Game Idler v${{ github.event.inputs.version }}
+          tag_name: ${{ needs.get_version.outputs.version }}
+          name: Steam Game Idler v${{ needs.get_version.outputs.version }}
           body_path: ./release_notes.md
           files: |
-            ./src-tauri/target/release/bundle/nsis/Steam Game Idler_${{ github.event.inputs.version }}_x64-setup.exe
-            ./src-tauri/target/release/bundle/nsis/Steam Game Idler_${{ github.event.inputs.version }}_x64-setup.nsis.zip
-            ./src-tauri/target/release/bundle/nsis/Steam Game Idler_${{ github.event.inputs.version }}_x64-setup.nsis.zip.sig
-            ./src-tauri/target/release/Steam Game Idler_${{ github.event.inputs.version }}_x64-portable.zip
+            ./src-tauri/target/release/bundle/nsis/Steam Game Idler_${{ needs.get_version.outputs.version }}_x64-setup.exe
+            ./src-tauri/target/release/bundle/nsis/Steam Game Idler_${{ needs.get_version.outputs.version }}_x64-setup.nsis.zip
+            ./src-tauri/target/release/bundle/nsis/Steam Game Idler_${{ needs.get_version.outputs.version }}_x64-setup.nsis.zip.sig
+            ./src-tauri/target/release/Steam Game Idler_${{ needs.get_version.outputs.version }}_x64-portable.zip
 
       - name: Cleanup artifacts
         if: always()
-        uses: geekyeggo/delete-artifact@v5
+        uses: geekyeggo/delete-artifact@v6
         with:
           name: dotnet-libs
-
-  send_discord_notification:
-    needs: build_release_bundle
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      
-      - name: Send changelog to Discord
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        run: |
-          VERSION="${{ github.event.inputs.version }}"
-          CHANGELOG_FILE="docs/changelogs/${VERSION}.mdx"
-          RELEASE_URL="https://github.com/${{ github.repository }}/releases/tag/${VERSION}"
-          
-          if [ ! -f "$CHANGELOG_FILE" ]; then
-            echo "Error: Changelog file not found: $CHANGELOG_FILE"
-            exit 1
-          fi
-          
-          # Extract changelog body after frontmatter (remove everything between --- markers and trim)
-          CHANGELOG_BODY=$(awk 'BEGIN{p=0} /^---$/{p++; next} p==2{print}' "$CHANGELOG_FILE" | sed '/^$/d')
-          
-          # Create JSON payload using jq to properly escape everything
-          jq -n \
-            --arg version "$VERSION" \
-            --arg changelog "$CHANGELOG_BODY" \
-            --arg url "$RELEASE_URL" \
-            '{content: ("# Steam Game Idler v" + $version + "\n\n" + $changelog + "\n\n[View on GitHub](<" + $url + ">)" + "\n\n<@&1447060344056053841>")}' \
-          | curl -H "Content-Type: application/json" \
-            -d @- \
-            "$DISCORD_WEBHOOK"

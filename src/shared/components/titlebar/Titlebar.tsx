@@ -6,7 +6,6 @@ import { VscChromeClose, VscChromeMaximize, VscChromeMinimize } from 'react-icon
 import { cn } from '@heroui/react'
 import {
   GoPro,
-  HelpDesk,
   Menu,
   Notifications,
   SearchModal,
@@ -123,8 +122,6 @@ export const Titlebar = () => {
           {/* Right: action buttons + window controls */}
           <div className='flex justify-end items-center h-full shrink-0'>
             {isPortable === false && updateAvailable && <UpdateButton />}
-
-            <HelpDesk />
 
             {showSearch && (
               <>

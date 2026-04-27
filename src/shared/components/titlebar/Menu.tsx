@@ -31,10 +31,10 @@ export const Menu = () => {
   const [isPortable, setIsPortable] = useState(false)
 
   const githubIssueUrl =
-    'https://github.com/zevnda/steam-game-idler/issues/new?assignees=zevnda&labels='
+    'https://github.com/kaisma0/steam-game-idler/issues/new?assignees=kaisma0&labels='
 
   useEffect(() => {
-    ;(async () => {
+    ; (async () => {
       const portable = await isPortableCheck()
       setIsPortable(portable)
     })()
@@ -146,7 +146,7 @@ export const Menu = () => {
               classNames={{
                 base: ['data-[hover=true]:!bg-item-hover data-[hover=true]:!text-content'],
               }}
-              onPress={() => openExternalLink('https://github.com/sponsors/zevnda')}
+              onPress={() => openExternalLink('https://github.com/sponsors/kaisma0')}
             >
               {t('menu.support')}
             </DropdownItem>

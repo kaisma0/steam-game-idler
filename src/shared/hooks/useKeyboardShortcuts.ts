@@ -78,16 +78,6 @@ export function useKeyboardShortcuts() {
       setSidebarCollapsed(!sidebarCollapsed)
       localStorage.setItem('sidebarCollapsed', String(!sidebarCollapsed))
       setTimeout(() => setTransitionDuration('0ms'), 100)
-    } else if ((e.key === 'h' || e.key === 'H') && e.shiftKey) {
-      e.preventDefault()
-      if (typeof window !== 'undefined' && window.$chatway) {
-        const widget = document.querySelector('.chatway--container')
-        if (widget?.classList.contains('widget--open')) {
-          window.$chatway.closeChatwayWidget()
-        } else {
-          window.$chatway.openChatwayWidget()
-        }
-      }
     }
   }, [])
 
